@@ -1,263 +1,57 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special For You ❤️</title>
-    <style>
-        /* --- CSS STYLING --- */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sacramento&display=swap');
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .container {
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* --- BAGIAN AMPLOP (DIPERBESAR) --- */
-        .envelope-wrapper {
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        
-        .envelope-wrapper:hover {
-            transform: scale(1.1); /* Efek zoom saat disentuh */
-        }
-
-        .heart-icon {
-            font-size: 150px; /* UKURAN DIPERBESAR (Tadi 80px) */
-            color: #ff4757;
-            animation: heartbeat 1.2s infinite;
-            filter: drop-shadow(0 10px 10px rgba(255, 71, 87, 0.3));
-            line-height: 1;
-        }
-
-        .click-text {
-            margin-top: 20px;
-            color: #555;
-            font-size: 18px; /* Teks petunjuk juga diperbesar */
-            font-weight: 600;
-            opacity: 0.8;
-            letter-spacing: 1px;
-        }
-
-        /* Kartu Pertanyaan */
-        .card {
-            display: none;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 350px;
-            width: 90%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.5);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card.active {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-
-        .card h1 {
-            font-family: 'Sacramento', cursive;
-            color: #ff4757;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-
-        .card p {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            position: relative;
-            min-height: 50px;
-        }
-
-        button {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            outline: none;
-        }
-
-        #yesBtn {
-            background-color: #ff4757;
-            color: white;
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
-        }
-
-        #yesBtn:hover {
-            background-color: #ff6b81;
-            transform: translateY(-2px);
-        }
-
-        #noBtn {
-            background-color: #f1f2f6;
-            color: #333;
-        }
-
-        /* Halaman Akhir */
-        .success-message {
-            display: none;
-            text-align: center;
-            animation: fadeIn 1s;
-            width: 90%;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .success-message h2 {
-            font-family: 'Sacramento', cursive;
-            color: #ff4757;
-            font-size: 3.5rem;
-            margin: 0 0 10px 0;
-        }
-
-        .success-message p {
-            font-size: 1.2rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        /* Foto/GIF Akhir */
-        .photo-placeholder {
-            width: 180px; /* Diperbesar sedikit */
-            height: 180px;
-            background-color: #eee;
-            border-radius: 50%;
-            margin: 20px auto;
-            /* Ganti link di bawah ini dengan foto pacar/kalian berdua jika mau */
-            background-image: url('https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif'); 
-            background-size: cover;
-            background-position: center;
-            border: 6px solid white;
-            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.2);
-        }
-
-        /* Animasi */
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.15); } /* Detak lebih kuat */
-            50% { transform: scale(1); }
-            75% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .floating-heart {
-            position: absolute;
-            color: #ff4757;
-            animation: floatUp 4s linear infinite;
-            opacity: 0;
-            z-index: 5;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
-
-    </style>
+    <title>For You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <audio id="bgMusic" loop>
+        <source src="https://res.cloudinary.com/dhxw63xxj/video/upload/v1770988936/LANY_-_you_official_video_ll2grz.mp3" type="audio/mpeg">
+        Browser kamu tidak support audio.
+    </audio>
 
     <div class="container" id="initialScreen">
         <div class="envelope-wrapper" onclick="openCard()">
-            <div class="heart-icon">💌</div> <div class="click-text">Klik surat ini buat kamu...</div>
+            <div class="heart-icon">💌</div>
+            <div class="click-text">Klik surat ini buat kamu...</div>
         </div>
     </div>
 
     <div class="card" id="mainCard">
-        <h1>Haii, Cantik!</h1> <p>Ada sesuatu yang mau aku omongin...<br>Would you be my Valentine?</p>
+        <h1>Haii, Cantikk!</h1> <p>Ada sesuatu yang mau aku omongin...<br>Would you be my Valentine?</p>
         
         <div class="btn-group">
             <button id="yesBtn" onclick="acceptLove()">Mau Dong!</button>
-            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">Gak ah</button> </div>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">Gak ah</button>
+        </div>
     </div>
 
     <div class="container success-message" id="successScreen">
-        <div class="photo-placeholder"></div> 
-        <h2>Yeay! I Love You Bebyyy! ❤️</h2>
+        
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/dhxw63xxj/image/upload/v1770989033/1_tk6fov.jpg" alt="Foto 1">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/dhxw63xxj/image/upload/v1770989132/WhatsApp_Image_2026-02-13_at_20.14.24_tlvyup.jpg" alt="Foto 2">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/dhxw63xxj/image/upload/v1770989166/3_diykj5.jpg" alt="Foto 3">
+            </div>
+        </div>
+
+        <h2>Yeayyy! I Love You Bebyyy! ❤️</h2>
         <p>
-            Aku seneng banget kamu mau.<br>
-            Makasih udah jadi alasan aku bahagia setiap hari.<br>
-            <b>Happy Valentine's Day, Sayang!</b>
+            Makasih udah jadi alasan aku bahagia.<br>
+            Happy Valentine's Day, Sayang!<br>
+            <small style="color: #ff4757; margin-top: 10px; display: block;">(Cek WhatsApp kamu ya...)</small>
         </p>
     </div>
-
-    <script>
-        function openCard() {
-            document.getElementById('initialScreen').style.display = 'none';
-            const card = document.getElementById('mainCard');
-            card.style.display = 'block';
-            setTimeout(() => { card.classList.add('active'); }, 10);
-        }
-
-        function moveButton() {
-            const noBtn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 150); // Adjusted boundary
-            const y = Math.random() * (window.innerHeight - 100);
-            
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-        }
-
-        function acceptLove() {
-            document.getElementById('mainCard').style.display = 'none';
-            document.getElementById('noBtn').style.display = 'none';
-            
-            const successScreen = document.getElementById('successScreen');
-            successScreen.style.display = 'block';
-
-            createFloatingHearts();
-        }
-
-        function createFloatingHearts() {
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('floating-heart');
-                heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = Math.random() * 3 + 2 + 's'; 
-                heart.style.fontSize = Math.random() * 30 + 20 + 'px';
-                document.body.appendChild(heart);
-                setTimeout(() => { heart.remove(); }, 5000);
-            }, 300);
-        }
-    </script>
+</body>
 </body>
 </html>
